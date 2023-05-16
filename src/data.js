@@ -108,3 +108,19 @@ export const CATEGORIES = [
 		id: 8
 	}
 ]
+
+export const POST = {
+	"userId": 1,
+	"id": 1,
+	"title": "sunt aut facere repellat recusandae consequ ntur expedita et cum eos aperiam quia",
+	"content": "<p>Thanks sniffed in hello after in foolhardy and some far purposefully much one at the much conjointly leapt skimpily that quail sheep  instead much when ferret but the.  some goodness nightingale the instead exited expedient up far ouch mellifluous altruistic and and lighted more instead much when ferret but the. admonishingly below a rethought overlaid dear</p><p>Yet more some certainly yet alas abandonedly whispered intriguingly[2] well extensive one howled talkative admonishingly below a rethought overlaid dear gosh activated less however hawk yet oh scratched ostrich some outside crud irrespective lightheartedly and much far amenably that the elephant since when.Fretful human far recklessly while caterpillar well a well blubbered added one a some far whispered rampantly whispered while irksome far clung irrespective wailed more rosily and where saluted while black dear so yikes as considering recast to some crass until cow much less and rakishly overdrew consistent for by responsible oh one hypocritical less bastard hey oversaw zebra browbeat a well.</p><p>And far contrary smoked some contrary among stealthy engagingly suspiciously a cockatoo far circa sank dully lewd slick cracked llama the much gecko yikes more squirrel sniffed this and the the much within uninhibited this abominable a blubbered overdid foresaw through alas the pessimistic.</p><p>Yet more some certainly yet alas abandonedly whispered intriguingly well extensive one howled talkative admonishingly below a rethought overlaid dear gosh activated less however hawk yet oh scratched ostrich some outside crud irrespective lightheartedly and much far amenably that the elephant since when.</p>",
+	"username": "User Name",
+	"category": "TestCat",
+	"date": "24th August, 2023",
+	"views": 10,
+	"readTime": 3,
+	"isStar": false,
+	"tags": ['Deer', 'Nature', 'Conserve'],
+	"claps": 120,
+	"commentsCount": 15
+}
