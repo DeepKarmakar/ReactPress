@@ -1,6 +1,7 @@
 
 import { AiOutlineRise, AiOutlineStar } from "react-icons/ai";
 import { POSTS } from "../../data";
+import { Link } from "react-router-dom";
 
 const Trending = () => {
 	return (
@@ -17,7 +18,7 @@ const Trending = () => {
 								<h1 className=' text-3xl pr-4 text-slate-300'>{index + 1}</h1>
 								<div>
 									<p className=' text-xs'>{username}</p>
-									<h2 className=' font-bold'>{title}</h2>
+									<Link to={`/post/${id}`}><h2 className=' font-bold'>{title}</h2></Link>
 									<div className='flex text-xs mt-1 text-slate-500'>
 										<span>{date}</span>
 										<span className=' mx-2 leading-3'>.</span>
