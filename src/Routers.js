@@ -5,11 +5,13 @@ import Post from "./Content/Pages/Post/Post";
 import Login from "./Auth/Login";
 import HomeContent from "./Content/Pages/Home/HomeContent";
 import Dashboard from "./Admin/Pages/Dashboard/Dashboard";
+import ScrollToTop from "./Helper/ScrollToTop";
 
 
 const Routers = () => {
 	return (
 		<BrowserRouter>
+			<ScrollToTop />
 			<Routes>
 				<Route path="/" element={<Home />}>
 					<Route path="/" element={<HomeContent />} />
