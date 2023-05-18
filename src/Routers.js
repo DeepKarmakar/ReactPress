@@ -6,6 +6,7 @@ import Login from "./Auth/Login";
 import HomeContent from "./Content/Pages/Home/HomeContent";
 import Dashboard from "./Admin/Pages/Dashboard/Dashboard";
 import ScrollToTop from "./Helper/ScrollToTop";
+import Archive from "./Content/Pages/Archive/Archive";
 
 
 const Routers = () => {
@@ -15,6 +16,7 @@ const Routers = () => {
 			<Routes>
 				<Route path="/" element={<Home />}>
 					<Route path="/" element={<HomeContent />} />
+					<Route path="/archive/:category" element={<Archive />} />
 					<Route path="/post/:id" element={<Post />} />
 				</Route>
 				<Route path="/login" element={<Login />} />
