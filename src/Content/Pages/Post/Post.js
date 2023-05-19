@@ -3,6 +3,8 @@ import { POST, CATEGORIES } from "../../../data";
 import { FaUserCircle } from "react-icons/fa";
 import SocialShare from "../../Components/SocialShare";
 import { Link } from "react-router-dom";
+import PostSuggesion from "../../Components/PostSuggesion";
+import Comments from "../../Components/Comments";
 
 
 const Post = () => {
@@ -43,6 +45,11 @@ const Post = () => {
 						</div>
 						<SocialShare />
 					</div>
+
+					<PostSuggesion />
+
+					<Comments />
+
 				</div>
 			</section>
 		</>

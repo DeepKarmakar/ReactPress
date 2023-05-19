@@ -7,6 +7,8 @@ import HomeContent from "./Content/Pages/Home/HomeContent";
 import Dashboard from "./Admin/Pages/Dashboard/Dashboard";
 import ScrollToTop from "./Helper/ScrollToTop";
 import Archive from "./Content/Pages/Archive/Archive";
+import Register from "./Auth/Register";
+import ResetPassword from "./Auth/ResetPassword";
 
 
 const Routers = () => {
@@ -20,6 +22,8 @@ const Routers = () => {
 					<Route path="/post/:id" element={<Post />} />
 				</Route>
 				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/reset-password" element={<ResetPassword />} />
 				<Route path="/admin" element={<Dashboard />} />
 			</Routes>
 		</BrowserRouter>
