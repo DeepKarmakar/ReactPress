@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { logIn, signIn, setPassword, approve, getAllUsers } = require('../controller/user');
+const { logIn, signIn, setPassword, approve, getAllUsers, isAuthnticUser } = require('../controller/user');
 const { authenticateJWT } = require('../utilities/responseMessage');
 
 router.get("/", (req, res) => {
@@ -12,6 +12,8 @@ router.post('/login', logIn)
 
 router.post('/signup', signIn)
 
-router.post('/users', getAllUsers)
+router.post('/users', authenticateJWT, getAllUsers)
+
+router.get('/isAuthnticate', authenticateJWT, isAuthnticUser)
 
 module.exports = router

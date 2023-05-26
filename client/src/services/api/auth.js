@@ -28,3 +28,10 @@ export const getAllUsers = (payload = {}) => {
 		.then((res) => res.data)
 		.catch((err) => err.response.data || 'Error Occurred');
 };
+
+export const authenticateUser = () => {
+	return axios
+		.get(`${api_url}/${url}/isAuthnticate`, { headers: AuthHeader() })
+		.then(res => res.date)
+		.catch((err) => err.response.data || 'Error Occurred');
+}

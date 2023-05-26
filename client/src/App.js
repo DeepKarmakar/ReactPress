@@ -1,15 +1,31 @@
+import { useEffect } from 'react';
 import './App.css';
-
-
-import { CATEGORIES, POSTS } from './data';
-import { postImage } from './assets/images';
+import Utilities from './Helper/utilities';
 import Routers from './Routers';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { authenticateUser } from './services/api/auth';
 
 
 
 function App() {
+
+
+	useEffect(() => {
+		const isAuthenticUser = () => {
+			const token = Utilities.getToken();
+			if (token) {
+				authenticateUser().then(res => {
+					console.log(res);
+				}).catch(err => {
+					console.log(err);
+				})
+			} else {
+				console.log('notLogged in');
+			}
+		}
+		isAuthenticUser();
+	}, [])
 
 	return (
 		<>

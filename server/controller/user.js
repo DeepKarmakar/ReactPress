@@ -38,7 +38,7 @@ exports.logIn = (req, res) => {
 					if (error) {
 						responseMessages(res, 500, false, Constants.RESPONSE.ERROR_OCCURRED);
 					} else if (match) {
-						responseMessages(res, 200, true, Constants.RESPONSE.LOGIN_SUCCESS, { token: generateToken(user) });
+						responseMessages(res, 200, true, Constants.RESPONSE.LOGIN_SUCCESS, { token: generateToken(user), userDetails: getUserDetails(user) });
 					} else {
 						responseMessages(res, 500, false, Constants.RESPONSE.PASSWORD_NOT_MATCHED);
 					}
@@ -89,7 +89,21 @@ exports.getAllUsers = async (req, res) => {
 	}
 }
 
+exports.isAuthnticUser = async (req, res) => {
+	try {
+		responseMessages(res, 200, true, null, getUserDetails(req.user.data));
+	} catch (error) {
+		responseMessages(res, 500, false, "Error Occured");
+	}
+}
+
 // Token generate function
 function generateToken(user) {
 	return jwt.sign({ data: user }, tokenSecret, { expiresIn: '24h' })
+}
+
+const getUserDetails = (data) => {
+	const { name, email } = data;
+	const userData = { name, email }
+	return userData;
 }
