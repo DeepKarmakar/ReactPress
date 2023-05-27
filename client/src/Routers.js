@@ -11,6 +11,7 @@ import Register from "./Auth/Register";
 import ResetPassword from "./Auth/ResetPassword";
 import Posts from "./Admin/Pages/Posts/Posts";
 import NewPost from "./Admin/Pages/Posts/NewPost";
+import PrivateRoute from "./PrivateRoute";
 
 
 const Routers = () => {
@@ -26,7 +27,7 @@ const Routers = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/reset-password" element={<ResetPassword />} />
-				<Route path="/admin" element={<Dashboard />}>
+				<Route path="/admin" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
 					<Route path="" element={<Posts />} />
 					<Route path="new-post" element={<NewPost />} />
 				</Route>
