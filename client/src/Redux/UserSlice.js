@@ -12,7 +12,7 @@ export const UserSlice = createSlice({
 			state.userData = { ...action.payload, isValidUser: true };
 		},
 		setInvalidUser: (state) => {
-			state.userData = { ...state.userData, isValidUser: false }
+			state.userData = { isValidUser: false }
 		}
 	}
 

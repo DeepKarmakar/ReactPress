@@ -1,9 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import React, { useState } from "react";
+import { setInvalidUser } from "../../Redux/UserSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const UserNav = (props) => {
+	let navigate = useNavigate();
+
+	const dispatch = useDispatch()
 	const [showUserDropdown, setShowUserDropdown] = useState(false)
 
 	const userdetails = useSelector((state) => state.user.userData)
@@ -12,6 +18,14 @@ const UserNav = (props) => {
 
 	const toggleDropdown = () => {
 		setShowUserDropdown(!showUserDropdown)
+	}
+
+	const handleSignout = (e) => {
+		e.preventDefault()
+		localStorage.removeItem('token');
+		dispatch(setInvalidUser())
+		navigate("/");
+		toast.success('You have been logged out');
 	}
 
 	return (
@@ -51,7 +65,7 @@ const UserNav = (props) => {
 								</div>
 								<ul className="py-1" role="none">
 									<li>
-										<a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</a>
+										<Link to={'/admin'} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Dashboard</Link>
 									</li>
 									{/* <li>
 									<a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Settings</a>
@@ -60,7 +74,9 @@ const UserNav = (props) => {
 									<a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
 								</li> */}
 									<li>
-										<a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+										<a href="#"
+											className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem"
+											onClick={(e) => handleSignout(e)}>Sign out</a>
 									</li>
 								</ul>
 							</div>

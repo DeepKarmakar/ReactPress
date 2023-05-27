@@ -28,7 +28,6 @@ const Login = () => {
 			userLogin(login).then(res => {
 				if (res.status) {
 					Utilities.setToken(res.data.token)
-					Utilities.setUserName(res.data.token)
 					toast.success('Wellcome to Dashboard, publish your blog');
 					navigate('/admin')
 					dispatch(setUserDetails(res.data.userDetails))
