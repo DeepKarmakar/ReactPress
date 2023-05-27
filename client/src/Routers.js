@@ -12,6 +12,7 @@ import ResetPassword from "./Auth/ResetPassword";
 import Posts from "./Admin/Pages/Posts/Posts";
 import NewPost from "./Admin/Pages/Posts/NewPost";
 import PrivateRoute from "./PrivateRoute";
+import PageNotFound from "./Content/Pages/PageNotFound/PageNotFound";
 
 
 const Routers = () => {
@@ -23,6 +24,7 @@ const Routers = () => {
 					<Route path="/" element={<HomeContent />} />
 					<Route path="/archive/:category" element={<Archive />} />
 					<Route path="/post/:id" element={<Post />} />
+					<Route path="*" element={<PageNotFound />} />
 				</Route>
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
