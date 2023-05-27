@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { authenticateUser } from './services/api/auth';
 import { useDispatch } from 'react-redux';
-import { setUserDetails } from './Redux/UserSlice';
+import { setInvalidUser, setUserDetails } from './Redux/UserSlice';
 
 
 
@@ -19,12 +19,17 @@ function App() {
 			const token = Utilities.getToken();
 			if (token) {
 				await authenticateUser().then(res => {
-					dispatch(setUserDetails(res.data))
+					if (res.status) {
+						dispatch(setUserDetails(res.data))
+					} else {
+						dispatch(setInvalidUser())
+					}
 				}).catch(err => {
 					console.log(err);
+					dispatch(setInvalidUser())
 				})
 			} else {
-				console.log('notLogged in');
+				dispatch(setInvalidUser())
 			}
 		}
 		isAuthenticUser();

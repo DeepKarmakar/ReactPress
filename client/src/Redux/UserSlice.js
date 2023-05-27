@@ -9,12 +9,15 @@ export const UserSlice = createSlice({
 	initialState,
 	reducers: {
 		setUserDetails: (state, action) => {
-			state.userData = action.payload;
+			state.userData = { ...action.payload, isValidUser: true };
 		},
+		setInvalidUser: (state) => {
+			state.userData = { ...state.userData, isValidUser: false }
+		}
 	}
 
 })
 
-export const { setUserDetails } = UserSlice.actions;
+export const { setUserDetails, setInvalidUser } = UserSlice.actions;
 
 export default UserSlice.reducer;

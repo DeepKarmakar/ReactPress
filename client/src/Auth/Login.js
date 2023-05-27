@@ -31,7 +31,7 @@ const Login = () => {
 					Utilities.setUserName(res.data.token)
 					toast.success('Wellcome to Dashboard, publish your blog');
 					navigate('/admin')
-					dispatch(setUserDetails(res.data))
+					dispatch(setUserDetails(res.data.userDetails))
 				} else {
 					toast.error(res.message);
 				}
