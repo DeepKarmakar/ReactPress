@@ -4,8 +4,12 @@ import { useState } from "react";
 import Utilities from '../Helper/utilities';
 import { toast } from 'react-toastify';
 import { userLogin } from '../services/api/auth';
+import { useDispatch, useSelector } from "react-redux";
+import { setUserDetails } from "../Redux/UserSlice";
 
 const Login = () => {
+	const dispatch = useDispatch()
+
 	const [login, setLogin] = useState({});
 
 	const navigate = useNavigate();
@@ -21,15 +25,13 @@ const Login = () => {
 			Utilities.isValidateEmail(login.email) &&
 			Utilities.isValidatePassword(login.password)
 		) {
-			console.log(login);
 			userLogin(login).then(res => {
-				console.log(res);
-
 				if (res.status) {
 					Utilities.setToken(res.data.token)
 					Utilities.setUserName(res.data.token)
 					toast.success('Wellcome to Dashboard, publish your blog');
 					navigate('/admin')
+					dispatch(setUserDetails(res.data))
 				} else {
 					toast.error(res.message);
 				}
