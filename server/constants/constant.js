@@ -18,5 +18,6 @@ module.exports = Object.freeze({
 		PASSWORD_SET_SUCCESS: 'Password Set Successfully',
 		EMAIL_NOT_SENT: 'Email Not sent',
 		EMAIL_SENT_SUCCESS: 'Email Sent Successfully',
+		POST_SUCCESS: 'Post Added Successfully'
 	}
 });

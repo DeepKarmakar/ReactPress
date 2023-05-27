@@ -4,7 +4,7 @@ const { logIn, signIn, setPassword, approve, getAllUsers, isAuthnticUser } = req
 const { authenticateJWT } = require('../utilities/responseMessage');
 
 router.get("/", (req, res) => {
-	res.json({ key: "hello world new" });
+	res.json({ key: "user api is working" });
 });
 
 
