@@ -3,9 +3,9 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 
-const PostEditor = () => {
+const PostEditor = ({ newPostData, setFormData }) => {
 
-	const [editorValue, setEditorValue] = useState('');
+	const { content } = newPostData;
 
 	const modules = {
 		toolbar: [
@@ -24,11 +24,15 @@ const PostEditor = () => {
 		'link', 'image'
 	]
 
+	const setEditorValue = (content) => {
+		setFormData({ ...newPostData, content })
+	};
+
 	return (
 		<div>
 			<ReactQuill
 				theme="snow"
-				value={editorValue}
+				value={content}
 				onChange={setEditorValue}
 				modules={modules}
 				formats={formats}

@@ -1,7 +1,10 @@
 import { useState } from "react";
 import Card from "../../Components/Card";
+import { useGetAllPostsQuery } from "../../../Redux/Services/ReactPressAPI";
 
 const Posts = () => {
+
+	const { data, isFatching, error } = useGetAllPostsQuery();
 
 	const DRAFT = 'draft';
 	const PUBLISHED = 'published';

@@ -13,7 +13,6 @@ const UserNav = (props) => {
 	const [showUserDropdown, setShowUserDropdown] = useState(false)
 
 	const userdetails = useSelector((state) => state.user.userData)
-	console.log(userdetails);
 	const { name, email, isValidUser } = userdetails
 
 	const toggleDropdown = () => {
