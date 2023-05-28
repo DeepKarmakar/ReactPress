@@ -30,6 +30,24 @@ exports.allPosts = async (req, res) => {
 	}
 }
 
-exports.singlePosts = (req, res) => {
+exports.singlePost = async (req, res) => {
+	try {
+		const post = await Post.findById(req.query.id).populate('author', 'name').exec();
+		responseMessages(res, 200, true, null, post);
+	} catch (error) {
+		responseMessages(res, 500, false, Constants.RESPONSE.ERROR_OCCURRED);
+	}
+}
 
+exports.updatePost = async (req, res) => {
+	try {
+		const post = await Post.updateOne(
+			{ _id: req.query.id },
+			req.body
+		)
+			.populate('author', 'name').exec();
+		responseMessages(res, 200, true, 'Successfully Updated');
+	} catch (error) {
+		responseMessages(res, 500, false, Constants.RESPONSE.ERROR_OCCURRED);
+	}
 }
