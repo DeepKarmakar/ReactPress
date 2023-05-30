@@ -40,7 +40,23 @@ const model = mongoose.Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
+	readTime: {
+		type: Number,
+		required: true
+	}
 
 })
+
+
+model.method('transform', function () {
+	var obj = this.toObject();
+
+	//Rename fields
+	obj.id = obj._id;
+	delete obj._id;
+
+	return obj;
+});
+
 
 module.exports = new mongoose.model('Post', model)

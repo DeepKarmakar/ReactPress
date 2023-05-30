@@ -2,6 +2,7 @@ import { useState } from "react";
 import PostEditor from "./PostEditor";
 import { useSelector } from 'react-redux';
 import { useAddPostMutation } from "../../../Redux/Services/ReactPressAPI";
+import Utilities from "../../../Helper/utilities";
 
 const NewPost = () => {
 	const userdetails = useSelector((state) => state.user.userData)
@@ -13,7 +14,8 @@ const NewPost = () => {
 		category: '',
 		author: userdetails.id,
 		date: new Date(),
-		isDraft: false
+		isDraft: false,
+		readTime: null
 	})
 
 	const handleChnage = (e) => {
@@ -30,6 +32,8 @@ const NewPost = () => {
 		if (e.target.name === 'draft') {
 			newPost.isDraft = true
 		}
+
+		newPost.readTime = Utilities.getReadingTime(newPost.content);
 
 		addnewPost(newPost)
 			.unwrap()

@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import moment from 'moment';
 
 const Utilities = {
 	isValidateEmail: (email) => {
@@ -92,6 +93,14 @@ const Utilities = {
 		const base64Url = token.split('.')[1];
 		const base64 = base64Url.replace('-', '+').replace('_', '/');
 		return JSON.parse(window.atob(base64));
+	},
+	toDateFormat: (date) => {
+		return moment(date).format('Do MMM, YYYY');
+	},
+	getReadingTime: (text) => {
+		const wpm = 225;
+		const words = text.trim().split(/\s+/).length;
+		return Math.ceil(words / wpm);
 	}
 }
 
