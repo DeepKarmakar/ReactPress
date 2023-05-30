@@ -1,14 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../../Components/Card";
-import { useGetAllPostsQuery } from "../../../Redux/Services/ReactPressAPI";
+import { useGetAllPostsMutation } from "../../../Redux/Services/ReactPressAPI";
+import { useSelector } from "react-redux";
 
 const Posts = () => {
 
-	const { data, isFatching, error } = useGetAllPostsQuery();
+	const loggedinUserId = useSelector((state) => state.user.userData.id)
+	const [getNewPost, response] = useGetAllPostsMutation()
 
 	const DRAFT = 'draft';
 	const PUBLISHED = 'published';
 	const [activeTab, setActiveTab] = useState(DRAFT);
+
+	console.log('response', response);
+	useEffect(() => {
+		const payload = {
+			filter: {
+				author: loggedinUserId,
+				isDraft: activeTab === DRAFT ? true : false
+			}
+		}
+
+		getNewPost(payload)
+			.unwrap()
+			.then((res) => {
+				console.log(res);
+			})
+			.then((error) => {
+				console.log(error)
+			})
+
+
+	}, [activeTab])
+
 
 	const onTabChange = (name) => {
 		setActiveTab(name)
@@ -31,12 +55,11 @@ const Posts = () => {
 				</ul>
 			</div>
 
-
-			<div className="flex flex-wrap justify-start gap-5 mt-5">
-				{[1, 2, 3, 4, 5].map((item, index) => (
-					<Card key={index} />
-				))}
-			</div>
+			{response.isLoading ? 'loading' : (
+				<div className="flex flex-wrap justify-start gap-5 mt-5">{response.data?.data?.map(({ title, content, _id }) => (
+					<Card key={_id} title={title} content={content} />
+				))}</div>
+			)}
 		</>
 
 	);

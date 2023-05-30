@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 
 router.post('/create-new', authenticateJWT, createNew)
 
-router.get('/all-posts', authenticateJWT, allPosts)
+router.post('/all-posts', authenticateJWT, allPosts)
 
 router.get('/single-posts', authenticateJWT, singlePost)
 

@@ -14,7 +14,13 @@ export const ReactPressAPI = createApi({
 		},
 	}),
 	endpoints: (builder) => ({
-		getAllPosts: builder.query({ query: () => '/post/all-posts' }),
+		getAllPosts: builder.mutation({
+			query: (post) => ({
+				url: '/post/all-posts',
+				method: 'POST',
+				body: post
+			}),
+		}),
 		addPost: builder.mutation({
 			query: (post) => ({
 				url: '/post/create-new',
@@ -27,6 +33,6 @@ export const ReactPressAPI = createApi({
 })
 
 export const {
-	useGetAllPostsQuery,
+	useGetAllPostsMutation,
 	useAddPostMutation,
 } = ReactPressAPI;

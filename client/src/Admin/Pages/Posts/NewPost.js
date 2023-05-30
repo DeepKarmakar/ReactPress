@@ -5,7 +5,6 @@ import { useAddPostMutation } from "../../../Redux/Services/ReactPressAPI";
 
 const NewPost = () => {
 	const userdetails = useSelector((state) => state.user.userData)
-	console.log('sfsfsfdf', useAddPostMutation());
 	const [addnewPost, response] = useAddPostMutation();
 
 	const [newPost, setNewPost] = useState({
@@ -13,7 +12,8 @@ const NewPost = () => {
 		content: '',
 		category: '',
 		author: userdetails.id,
-		date: new Date()
+		date: new Date(),
+		isDraft: false
 	})
 
 	const handleChnage = (e) => {
@@ -26,6 +26,10 @@ const NewPost = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		console.log(newPost);
+
+		if (e.target.name === 'draft') {
+			newPost.isDraft = true
+		}
 
 		addnewPost(newPost)
 			.unwrap()
@@ -69,10 +73,15 @@ const NewPost = () => {
 			</div>
 
 			<div className="flex mt-7">
-				<button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save Draft</button>
+				<button
+					type="button"
+					className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+					name="draft"
+					onClick={handleSubmit}>Save Draft</button>
 				<button
 					type="button"
 					className="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900"
+					name="publish"
 					onClick={handleSubmit}>Publish</button>
 			</div>
 		</div>

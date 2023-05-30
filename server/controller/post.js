@@ -3,14 +3,7 @@ const Post = require('../schema/post');
 const { responseMessages } = require('../utilities/responseMessage');
 
 exports.createNew = async (req, res) => {
-	const newPosts = Post({
-		title: req.body.title,
-		content: req.body.content,
-		category: req.body.category,
-		date: req.body.date,
-		author: req.body.author,
-	})
-
+	const newPosts = Post(req.body)
 	await newPosts.save()
 		.then(() => {
 			responseMessages(res, 200, true, Constants.RESPONSE.POST_SUCCESS);

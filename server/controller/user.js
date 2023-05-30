@@ -103,7 +103,6 @@ function generateToken(user) {
 }
 
 const getUserDetails = (data) => {
-	console.log(data);
 	const { name, email, _id } = data;
 	const userData = { name, email, id: _id }
 	return userData;

@@ -32,6 +32,10 @@ const model = mongoose.Schema({
 		type: Date,
 		required: true
 	},
+	isDraft: {
+		type: Boolean,
+		required: false
+	},
 	author: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'
